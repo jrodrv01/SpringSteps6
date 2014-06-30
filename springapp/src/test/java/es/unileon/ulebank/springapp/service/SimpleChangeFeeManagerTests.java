@@ -75,7 +75,7 @@ public class SimpleChangeFeeManagerTests {
     }
     
     @Test
-    public void testIncreasePriceWithPositivePercentage() {
+    public void testDecreaseFeeWithPositivePercentage() {
     	feeManager.decreaseFee(SELL_BUY_DESCRIPTION, FEE_COUNT);
         double expectedSellBuyFeeWithDecrease = 1.00;
         double expectedCustodyFeeWithDecrease = 1.00;
@@ -88,7 +88,11 @@ public class SimpleChangeFeeManagerTests {
         Fee fee = fees.get(0);
         assertEquals(fee.getFee(), 0);
         
-      
+        Fee feeBuy = listFees.get(0);
+        assertEquals(expectedSellBuyFeeWithDecrease, feeBuy.getFee().doubleValue(), 0);
+        
+        Fee feeCustudy = listFees.get(1);
+        assertEquals(expectedCustodyFeeWithDecrease, feeCustudy.getFee().doubleValue(), 0);
     }
 
 }
